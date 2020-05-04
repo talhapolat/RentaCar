@@ -4,7 +4,7 @@ from django.utils.html import format_html
 # Register your models here.
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
-from product.models import Category, Product, Images
+from product.models import Category, Product, Images, Office, Comment, Order
 
 
 class ProductImageInline(admin.TabularInline):
@@ -16,15 +16,27 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'image_tag', 'status']
+    list_display = ['title', 'category', 'image_tag', 'price', 'status']
     list_filter = ['status', 'category']
     inlines = [ProductImageInline]
     readonly_fields = ('image_tag',)
+    prepopulated_fields = {'slug': ('title',)}
 
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title', 'product', 'image']
 
 
+class OfficeAdmin(admin.ModelAdmin):
+    list_display = ['title', 'phone', 'status']
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'surname', 'email', 'status']
+    list_filter = ['status', 'product']
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'startdate', 'enddate', 'days', 'create_at', 'status']
+    list_filter = ['status']
 
 
 class CategoryAdmin2(DraggableMPTTAdmin):
@@ -32,6 +44,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     list_display = ('tree_actions', 'indented_title',
                     'related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
+    prepopulated_fields = {'slug': ('title',)}
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -60,6 +73,11 @@ class CategoryAdmin2(DraggableMPTTAdmin):
         return instance.products_cumulative_count
     related_products_cumulative_count.short_description = 'Related products (in tree)'
 
+
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Office, OfficeAdmin)
+admin.site.register(Comment, CommentAdmin)
+admin.site.register(Order, OrderAdmin)

@@ -1,0 +1,123 @@
+{% extends 'homebase.html' %}
+
+
+{% block title %} {{ setting.title }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" href="{{ setting.icon.url }}">  {% endblock %}
+
+
+{% load static %}
+{% block content %}
+
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Giriş Yap
+                    </h1>
+                    <p class="text-white link-nav"><a href="/">Home </a> <span class="lnr lnr-arrow-right"></span> <a
+                            href="/login"> Login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container" style="margin-top: 80px; margin-bottom: 150px">
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+                <form action="" name="signin" method="POST">
+                    {% csrf_token %}
+                    <div class="mt-10">
+                        <input type="text" name="username" placeholder="Kullanıcı Adı"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kullanıcı Adı'" required
+                               class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="password" name="password" placeholder="Şifre"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Şifre'" required
+                               class="single-input">
+                    </div>
+
+                    <button type="submit" name="formtype" value="signin" class="genric-btn success mt-2"
+                            style="width: 100%">GİRİŞ YAP
+                    </button>
+                </form>
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mt-10">
+                        <input type="text" name="first_name" id="id_first_name" placeholder="Adınız"
+                               onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Adınız'" required class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="text" name="last_name" id="id_last_name" placeholder="Soyadınız"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Soyadınız'" required
+                               class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="text" name="username" id="id_username" placeholder="Kulanıcı Adı"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kullanıcı Adı'" required
+                               class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="email" name="email" id="id_email" placeholder="E-posta Adresi"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-posta Adresi'" required
+                               class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="password" name="password1" id="id_password1" placeholder="Şifre"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Şifre'" required
+                               class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="password" name="password2" id="id_password2" placeholder="Şifrenizi doğrulayın"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Şifre'" required
+                               class="single-input">
+                    </div>
+
+                    <button type="submit" name="formtype" value="signup" class="genric-btn primary mt-2"
+                            style="width: 100%">KAYIT OL
+                    </button>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    {% endif %}
+
+
+                    {#                    {% for field in form %}#}
+                    {#                        <p>#}
+                    {#                            {{ field.label.tag }} <br>#}
+                    {#                            {{ field }}#}
+                    {##}
+                    {#                        </p>#}
+                    {#                    {% endfor %}#}
+                    {#                    <button type="submit" name="formtype" value="signup" class="genric-btn primary mt-2"#}
+                    {#                            style="width: 100%">KAYIT OL#}
+                    {#                    </button>#}
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

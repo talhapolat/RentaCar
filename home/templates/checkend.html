@@ -1,0 +1,130 @@
+{% extends 'homebase.html' %}
+
+
+{% block title %} {{ setting.title }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" href="{{ setting.icon.url }}">  {% endblock %}
+
+
+{% load static %}
+{% block content %}
+
+
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Aracınızı Seçin
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container-fluid" style="margin-top: 100px; margin-bottom: 100px ">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center">Aracı Teslim Tarihi</div>
+                <div class="card" style="width: 100%; ">
+
+                    <div class="card-header">
+
+                        <div class="row">
+                            <div class="col-3">
+                                {% if rentdays == 1 %}
+                                <a>Önceki Gün</a>
+                                {% else %}
+                                <a style="color: black" href="/checkend/AddEndDays/1/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}&vehicleid={{product.id}}">Önceki Gün</a>
+                                {% endif %}
+                            </div>
+                            <div class="col-6 text-center">
+                                {{ enddate|date:"d.m.Y" }}
+                            </div>
+                            <div class="col-3 text-right">
+                                <a style="color: black" href="/checkend/AddEndDays/2/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}&vehicleid={{product.id}}">Sonraki Gün</a>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-md-8">
+
+                                <div
+                                     class="card mb-3 "
+                                     style="cursor: pointer">
+                                    <div class="row no-gutters">
+
+                                        <div class="col-md-5 ">
+                                            <img src="{{ product.image.url }}" class="card-img " alt="...">
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <div class="card-body ">
+                                                <h5 class="card-title">{{ product.title }}</h5>
+                                                <p class="card-text">This is a wider card with supporting text below
+                                                    as a natural
+                                                    lead-in to additional content. This content is a little bit
+                                                    longer.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small></p>
+                                               <b> <a style="color: orange; font-size: 21px; font-weight: 500;">{{ product.price }}₺ </a></b> / <small> Günlük</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a style="font-size: 24px; font-weight: 600;color: black">{{ rentdays }} Gün</a>
+                                <div style="float: right">
+                                    <a style="font-weight: 600">Toplam:  </a> <a style="color: orange; font-size: 17px; font-weight: 600">{{ totalprice }}₺</a>
+                                </div>
+
+                                <hr>
+                                <h5>{{ startdate|date:"d.m.Y" }} ({{ starthour }})
+                                     -   {{ enddate|date:"d.m.Y" }} ({{ endhour }})</h5>
+                                <br>
+                                <h5 style="margin-bottom: 18px">{{ office.title }} ofisimizden teslim alabilirsiniz</h5>
+
+                                <button type="submit" name="formtype" value="signin" class="genric-btn success mt-2"
+                                        style="width: 100%">ONLİNE ÖDE
+                                </button>
+
+                                <button type="submit" name="formtype" value="signin" class="genric-btn primary mt-2" onclick="location.href='/product/makeorder/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}&vehicleid={{product.id}}'"
+                                        style="width: 100%">OFİSTE ÖDE
+                                </button>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

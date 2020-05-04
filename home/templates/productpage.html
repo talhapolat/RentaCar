@@ -1,0 +1,117 @@
+{% extends 'homebase.html' %}
+
+
+{% block title %} {{ setting.title }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" href="{{ setting.icon.url }}">  {% endblock %}
+
+
+{% load static %}
+{% block content %}
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        {{ product.title }}
+                    </h1>
+                    <p class="text-white link-nav"><a href="/">Home </a> <span class="lnr lnr-arrow-right"></span> <a
+                            href="/vehicle"> Araçlar</a><span class="lnr lnr-arrow-right"></span><a href="/vehicle/{{ product.id }}">{{ product.title }} </a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+
+    <div class="container" style="margin-top: 105px; min-height: 1000px">
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <img src="{{product.image.url}}" alt="">
+            </div>
+
+
+
+
+        <div class="col-md-12" style="margin-bottom: 100px">
+        {% if images %}
+            <div class="section-top-border">
+						<h3>Araca ait görseller</h3>
+                <hr>
+						<div class="row gallery-item">
+{% for im in images %}
+							<div class="col-md-4">
+								<a href="{{im.image.url}}" class="img-pop-up"><div class="single-gallery-image" style="background: url({{im.image.url}});"></div></a>
+							</div>
+                            {% endfor %}
+						</div>
+					</div>
+        {% endif %}
+
+
+        {% if comments %}
+        <div class="section-top-border">
+						<h3>Müşteri yorumları</h3>
+            <hr>
+						<div class="row gallery-item">
+{% for co in comments %}
+							<div class="col-md-12 mt-2">
+                               <b> <a style="font-size: 16px; ">{{ co.name }} {{ co.surname }}</a></b> : <a>{{ co.comment }}</a>
+
+							</div>
+                            {% endfor %}
+						</div>
+					</div>
+{% endif %}
+
+
+
+<h3 style="margin-top: 60px">Yorum yap</h3>
+            <hr>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert-success alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+
+        <form action="/product/addcomment/{{ product.id }}" method="post">
+            {% csrf_token %}
+									<div class="mt-10">
+										<input type="text" name="name" id="id_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+									</div>
+									<div class="mt-10">
+										<input type="text" name="surname" id="id_surname" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+									</div>
+
+									<div class="mt-10">
+										<input type="email" name="email" id="id_email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+									</div>
+
+									<div class="mt-10">
+										<textarea class="single-textarea" name="comment" id="id_comment" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required></textarea>
+									</div>
+            <br>
+                                    <button type="submit">Gönder</button>
+								</form>
+
+        </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

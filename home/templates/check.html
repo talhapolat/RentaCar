@@ -1,0 +1,100 @@
+{% extends 'homebase.html' %}
+
+
+{% block title %} {{ setting.title }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" href="{{ setting.icon.url }}">  {% endblock %}
+
+
+{% load static %}
+{% block content %}
+
+
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Aracınızı Seçin
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container-fluid" style="margin-top: 100px; margin-bottom: 100px ">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+            <div class="text-center">Aracınızı Alış Tarihi</div>
+                <div class="card" style="width: 100%; ">
+
+                    <div class="card-header">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <a style="color: black" href="/check/AddStartDays/1/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}">Önceki Gün</a>
+                            </div>
+                            <div class="col-6 text-center">
+                               {{ startdate|date:"d.m.Y"  }}
+                            </div>
+                            <div class="col-3 text-right">
+                                <a style="color: black" href="/check/AddStartDays/2/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}">Sonraki Gün</a>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            {% for rs in products %}
+                                <div class="col-md-6">
+
+                                    <div onclick="location.href='/checkend/?vehicletype={{vehicletype}}&office={{office.id}}&startdate={{ startdate|date:"d/m/Y" }}&starthour={{starthour}}&enddate={{ enddate|date:"d/m/Y"  }}&endhour={{endhour}}&vehicleid={{rs.id}}'" class="card mb-3 selectcar"
+                                         style="cursor: pointer">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-5 ">
+                                                <img src="{{ rs.image.url }}" class="card-img " alt="...">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body ">
+                                                    <h5 class="card-title">{{ rs.title }}</h5>
+                                                    <p class="card-text">This is a wider card with supporting text below
+                                                        as a natural
+                                                        lead-in to additional content. This content is a little bit
+                                                        longer.</p>
+
+                                                    <h3 style="color: orange">{{ rs.price }}₺</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

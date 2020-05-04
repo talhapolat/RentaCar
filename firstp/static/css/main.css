@@ -4,13 +4,15 @@
 /* Mobile Layout: 320px */
 /* Wide Mobile Layout: 480px */
 /* =================================== */
-/*  Basic Style 
+/*  Basic Style
 /* =================================== */
 ::-moz-selection {
   /* Code for Firefox */
   background-color: #fab700;
   color: #fff;
 }
+
+
 
 ::selection {
   background-color: #fab700;
@@ -163,6 +165,8 @@ h6, .h6 {
 td, th {
   border-radius: 0px;
 }
+
+
 
 /**
  * For modern browsers
@@ -3483,6 +3487,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   border: none;
   background: #f9f9ff;
 }
+
+
+
+
 
 /*
 ################
