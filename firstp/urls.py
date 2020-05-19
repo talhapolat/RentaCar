@@ -36,6 +36,8 @@ urlpatterns = [
     path('check/AddStartDays/<int:id>/', views.AddStartDays, name='adddays'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('<int:id>/<slug:slug>/', views.category, name='category'),
+    path('search/', views.search, name='search'),
+    path('api/get_places/', views.get_places, name='get_places'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

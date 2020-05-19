@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+import json
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, HttpResponseRedirect
 
-from home.forms import SignUpForm
+from home.forms import SignUpForm, SearchForm
 from home.models import Setting, ContactForm, Contact
 from product.models import Product, Category, Office, Images, Comment
 
@@ -76,7 +76,7 @@ def login_view(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     form = SignUpForm()
-    context = {'setting': setting, 'page': 'aboutus', 'category': category, 'form':form}
+    context = {'setting': setting, 'page': 'aboutus', 'category': category, 'form': form}
     return render(request, 'login.html', context)
 
 
@@ -85,7 +85,7 @@ def logout_view(request):
     category = Category.objects.all()
     context = {'setting': setting, 'page': 'aboutus', 'category': category}
     logout(request)
-    return render(request, 'login.html', context)
+    return HttpResponseRedirect('/login')
 
 
 def products(request):
@@ -94,6 +94,34 @@ def products(request):
     products = Product.objects.all()
     context = {'setting': setting, 'page': 'cars', 'category': category, 'products': products}
     return render(request, 'products.html', context)
+
+
+def search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            setting = Setting.objects.get(pk=1)
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            products = Product.objects.filter(title__icontains=query)
+            context = {'setting': setting, 'page': 'cars', 'category': category, 'products': products}
+            return render(request, 'products.html', context)
+
+
+def get_places(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        places = Product.objects.filter(title__icontains=q)
+        results = []
+        for pl in places:
+            place_json = {}
+            place_json = pl.title
+            results.append(place_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
 
 
 def productdetail(request, id, slug):
@@ -128,7 +156,9 @@ def check(request):
     starthour = request.GET['starthour']
     endhour = request.GET['endhour']
 
-    context = {'setting': setting, 'page': 'cars', 'category': category, 'products': products, 'startdate': startdate, 'enddate': enddate, 'vehicletype': vehicletype, 'office': office, 'starthour': starthour, 'endhour': endhour}
+    context = {'setting': setting, 'page': 'cars', 'category': category, 'products': products, 'startdate': startdate,
+               'enddate': enddate, 'vehicletype': vehicletype, 'office': office, 'starthour': starthour,
+               'endhour': endhour}
     return render(request, 'check.html', context)
 
 
@@ -144,7 +174,6 @@ def checkend(request):
     endhour = request.GET['endhour']
     rentdays = abs((startdate - enddate).days)
     totalprice = rentdays * product.price
-
 
     context = {'setting': setting, 'page': 'cars', 'category': category, 'product': product,
                'startdate': startdate, 'enddate': enddate, 'vehicletype': vehicletype, 'office': office,
@@ -179,7 +208,6 @@ def AddEndDays(request, id):
     return render(request, 'checkend.html', context)
 
 
-
 def AddStartDays(request, id):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
@@ -196,11 +224,7 @@ def AddStartDays(request, id):
     if (id == 2):
         startdate += timedelta(days=1)
 
-
     context = {'setting': setting, 'page': 'cars', 'category': category, 'products': products,
                'startdate': startdate, 'enddate': enddate, 'vehicletype': vehicletype, 'office': office,
                'starthour': starthour, 'endhour': endhour}
     return render(request, 'check.html', context)
-
-
-

@@ -12,5 +12,6 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
-
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
 

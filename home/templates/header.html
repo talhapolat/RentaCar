@@ -5,8 +5,18 @@
             <div id="logo">
                 <a href="/"><img src="{{ setting.logo.url }}" alt="" title=""/></a>
             </div>
+            <form action="/search/" method="post" class="form-inline">
+                {% csrf_token %}
+                <div class="">
+                    <input id="places" type="text" name="query" class="input form-control" placeholder="Araç arayın..">
+                    <button class="btn btn-outline-warning">Ara</button>
+                </div>
+            </form>
             <nav id="nav-menu-container">
+
                 <ul class="nav-menu">
+
+
                     <li class="menu-active"><a href="/">Home</a></li>
                     <li><a href="/aboutus">Hakkımızda</a></li>
                     <li class="menu-has-children"><a href="/vehicle">Araçlarımız</a>
@@ -33,11 +43,11 @@
 
                     </li>
                     <li><a href="/contact">İletişim</a></li>
-                     {% if user.id is not None %}
+                    {% if user.id is not None %}
                         <li class="menu-has-children"><a href="/login">Hesabım</a>
-                     {% else %}
+                            {% else %}
                         <li class="menu-has-children"><a href="/login">Giriş Yap</a>
-                     {% endif %}
+                    {% endif %}
 
                 </ul>
 
