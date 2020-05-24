@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from home.forms import SignUpForm, SearchForm
-from home.models import Setting, ContactForm, Contact
+from home.models import Setting, ContactForm, Contact, UserProfile
 from product.models import Product, Category, Office, Images, Comment
 
 
@@ -68,6 +68,12 @@ def login_view(request):
             password = request.POST['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
+
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/user.png"
+            data.save()
             return HttpResponseRedirect('/')
         else:
             messages.error(request, 'Kayıt yapılamadı')
@@ -108,6 +114,13 @@ def search(request):
             return render(request, 'products.html', context)
 
 
+def account(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    context = {'setting': setting,'category': category}
+    return render(request, 'account.html', context)
+
+
 def get_places(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
@@ -129,7 +142,7 @@ def productdetail(request, id, slug):
     category = Category.objects.all()
     product = Product.objects.get(id=id)
     images = Images.objects.filter(product_id=id)
-    comments = Comment.objects.filter(product_id=id)
+    comments = Comment.objects.filter(product_id=id, status='TRUE')
     context = {'setting': setting, 'page': 'cars', 'category': category, 'slug': slug, 'product': product,
                'images': images, 'comments': comments}
     return render(request, 'productpage.html', context)

@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8364d8ec-55aa-494c-84f5-42ac429a1787" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/home/templates/account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/accountsidebar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/comments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/orders.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firstp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/firstp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/categorypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/categorypage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/checkend.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/checkend.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/homebase.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/homebase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/productpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/productpage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +67,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -145,7 +153,14 @@
       <workItem from="1588948866902" duration="47000" />
       <workItem from="1588961200992" duration="627000" />
       <workItem from="1589107657969" duration="123000" />
-      <workItem from="1589836357823" duration="7063000" />
+      <workItem from="1589836357823" duration="7850000" />
+      <workItem from="1589895098234" duration="1246000" />
+      <workItem from="1590015888615" duration="3080000" />
+      <workItem from="1590053732648" duration="2228000" />
+      <workItem from="1590184622049" duration="6402000" />
+      <workItem from="1590236804410" duration="9014000" />
+      <workItem from="1590276829126" duration="2175000" />
+      <workItem from="1590315704541" duration="2179000" />
     </task>
     <task id="LOCAL-00001" summary="Update project">
       <created>1585163426189</created>
@@ -196,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588585419477</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Search Engine">
+      <created>1589849055894</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589849055894</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,13 +232,18 @@
     <MESSAGE value="Completed until part 14" />
     <MESSAGE value="Completed until part 15" />
     <MESSAGE value="Membership and order transactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Membership and order transactions" />
+    <MESSAGE value="Search Engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Search Engine" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1588585418352">
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590186387403">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588585418352" />
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590186387403" />
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1589849054992">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589849054992" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1585163243018">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -253,14 +280,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585175260181" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1590186374910">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1590186374910" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1586522159448">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586522159448" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588585427157">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589849058843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588585427157" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589849058843" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586042366709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -1,0 +1,93 @@
+{% extends 'homebase.html' %}
+
+
+{% block title %} {{ setting.title }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block head %}
+    <link rel="shortcut icon" href="{{ setting.icon.url }}">  {% endblock %}
+
+
+{% load static %}
+{% block content %}
+
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Hesabım
+                    </h1>
+                    <p class="text-white link-nav"><a href="/">Home </a> <span class="lnr lnr-arrow-right"></span> <a
+                            href="/account"> Hesabım</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+
+    <div class="container-fluid" style="margin-top: 55px; min-height: 1000px">
+        <div class="row">
+
+            <div class="col-md-2">
+
+            </div>
+
+
+            <div class="col-md-3">
+                {% block slider %} {% include 'accountsidebar.html' %} {% endblock %}
+            </div>
+
+            <div class="col-md-5">
+
+                <form action="" method="POST">
+                     {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Username" value="{{ profile.user.username }}">
+                        <input type="hidden" name="user" value="{{ profile.user.id }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Email adresiniz" name="email" value="{{ profile.user.email }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Adınız" name="firstname" value="{{ profile.user.first_name }}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Soyadınız" name="lastname" value="{{ profile.user.last_name }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Telefon numaranız" name="phone" value="{{ profile.phone }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Şehir" name="city" value="{{ profile.city }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Adresiniz" name="adress" value="{{ profile.address }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+

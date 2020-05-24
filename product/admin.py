@@ -30,7 +30,7 @@ class OfficeAdmin(admin.ModelAdmin):
     list_display = ['title', 'phone', 'status']
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'surname', 'email', 'status']
+    list_display = ['user', 'name', 'surname', 'email', 'status']
     list_filter = ['status', 'product']
 
 

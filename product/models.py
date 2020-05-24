@@ -106,6 +106,7 @@ class Comment(models.Model):
         ('FALSE', 'HAYIR'),
         ('NEW', 'YENI'),
     )
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     surname = models.CharField(max_length=80)
     email = models.CharField(max_length=100)
@@ -119,7 +120,7 @@ class Comment(models.Model):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['name', 'surname', 'email', 'comment']
+        fields = ['user', 'name', 'surname', 'email', 'comment']
 
 
 
@@ -142,9 +143,6 @@ class Order(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.product.title
-
-
-
 
 
 
