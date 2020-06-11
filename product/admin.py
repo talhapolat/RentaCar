@@ -35,7 +35,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'startdate', 'enddate', 'days', 'create_at', 'status']
+    list_display = ['user', 'startdate', 'enddate', 'days', 'create_at', 'payment', 'status']
     list_filter = ['status']
 
 

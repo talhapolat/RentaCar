@@ -44,6 +44,7 @@
             <div class="col-md-6">
 
                 <table class="table">
+                <h4>Rezervasyonlarınız</h4> <br>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -53,6 +54,7 @@
                         <th scope="col">Araç</th>
                         <th scope="col">Toplam</th>
                         <th scope="col">Ödeme</th>
+                        <th scope="col">Statu</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,12 +62,13 @@
                     {% for order in orders %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ order.startdate }}</td>
-                            <td>{{ order.enddate }}</td>
+                            <td>{{ order.startdate|date:"d.m.Y" }}</td>
+                            <td>{{ order.enddate|date:"d.m.Y" }}</td>
                             <td>{{ order.office }}</td>
                             <td>{{ order.product }}</td>
                             <td>{{ order.price }}₺</td>
-                            <td>{% if order.status == "TRUE" %} Online Ödeme {% else %} Ofiste Ödeme {% endif %}</td>
+                            <td>{% if order.payment == "TRUE" %} Online Ödeme {% else %} Ofiste Ödeme {% endif %}</td>
+                            <td>{% if order.status == "TRUE" %} Onaylandı {% elif order.status == "FALSE" %} Red {% else %} Bekleniyor {% endif %}</td>
                         </tr>
                     {% endfor %}
 

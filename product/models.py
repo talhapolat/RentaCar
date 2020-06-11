@@ -106,11 +106,11 @@ class Comment(models.Model):
         ('FALSE', 'HAYIR'),
         ('NEW', 'YENI'),
     )
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     surname = models.CharField(max_length=80)
     email = models.CharField(max_length=100)
     comment = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS)
     def __str__(self):
@@ -120,15 +120,20 @@ class Comment(models.Model):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['user', 'name', 'surname', 'email', 'comment']
+        fields = ['name', 'surname', 'email', 'comment']
 
 
 
 
 class Order(models.Model):
-    STATUS = (
+    PAYMENT = (
         ('TRUE', 'ONLİNE ODEME'),
         ('FALSE', 'OFİSTE ÖDEME'),
+    )
+    STATUS = (
+        ('TRUE', 'ONAYLANDI'),
+        ('FALSE', 'RED'),
+        ('NEW', 'BEKLENIYOR'),
     )
     startdate = models.DateTimeField()
     enddate = models.DateTimeField()
@@ -139,7 +144,8 @@ class Order(models.Model):
     days = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10, choices=STATUS)
+    payment = models.CharField(max_length=10, choices=PAYMENT, default='TRUE')
+    status = models.CharField(max_length=10, choices=STATUS, default='NEW')
     create_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.product.title

@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-md-6">
-
+            <h4>Yaptığınız Yorumlar</h4> <br>
                 <table class="table">
                     <thead>
                     <tr>
@@ -58,13 +58,15 @@
                     <tbody>
 
                     {% for comment in comments %}
+                        <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ comment.name }}</td>
                             <td>{{ comment.surname }}</td>
                             <td>{{ comment.email }}</td>
                             <td>{{ comment.comment }}</td>
-                            <td>{{ comment.product.title }}₺</td>
-                            <td>{% if comment.status == "TRUE" %} Aktif {% else %} Beklemede {% endif %}</td>
+                            <td><a href="/vehicle/{{ comment.product.id }}">{{ comment.product.title }}</a></td>
+                            <td>{% if comment.status == "TRUE" %} Aktif {% elif comment.status == "FALSE" %} Red {% else %} Beklemede {% endif %}</td>
+                        </tr>
                     {% endfor %}
 
 

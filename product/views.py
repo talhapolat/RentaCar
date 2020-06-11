@@ -20,7 +20,7 @@ def AddComment(request, id):
         if form.is_valid():
             #current_user = request.user
             data = Comment()
-            data.user = form.cleaned_data['user']
+            data.user_id = request.user.id
             data.name = form.cleaned_data['name']
             data.surname = form.cleaned_data['surname']
             data.email = form.cleaned_data['email']
@@ -46,7 +46,7 @@ def MakeOrder(request):
     data.enddate = datetime.strptime(request.GET['enddate'], "%d/%m/%Y").date()
     data.vehicletype = request.GET['vehicletype']
     data.office = Office.objects.get(id=request.GET['office'])
-    data.status = request.GET['status']
+    data.payment = request.GET['payment']
     data.endhour= request.GET['endhour']
     data.starthour = request.GET['starthour']
     data.rentdays = abs((data.startdate - data.enddate).days)
@@ -54,5 +54,5 @@ def MakeOrder(request):
     data.days = abs((data.startdate - data.enddate).days)
     data.create_at = datetime.now()
     data.save()
-    messages.success(request, "Yorumunuz gönderildi.")
+    # messages.success(request, "Yorumunuz gönderildi.")
     return HttpResponseRedirect('/account/orders')

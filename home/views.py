@@ -161,10 +161,10 @@ def category(request, id, slug):
 def check(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    products = Product.objects.all()
     startdate = datetime.strptime(request.GET['startdate'], "%m/%d/%Y").date()
     enddate = datetime.strptime(request.GET['enddate'], "%m/%d/%Y").date()
     vehicletype = request.GET['vehicletype']
+    products = Product.objects.filter(category_id=vehicletype)
     office = Office.objects.get(id=request.GET['office'])
     starthour = request.GET['starthour']
     endhour = request.GET['endhour']
